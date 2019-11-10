@@ -4,23 +4,32 @@ include('config.php');
 //$conn=mysqli_connect('localhost','root','','codenair');
 //Getting Input value
 if (isset($_POST['login'])) {
-    $username = mysqli_real_escape_string($con,$_POST['username']);
-    $password = mysqli_real_escape_string($con,$_POST['password']);
-    $passwordmd5 = md5($password);
+    $username = $_POST['username'];
+    $password = md5($_POST['password']);
     
     if (empty($username) && empty($password)) {
         $error= 'Fields are Mandatory';
     } else {
         //Checking login detail
-        $result = mysqli_query($con,"SELECT * FROM `user` WHERE `username`='$username' AND `password`='$passwordmd5'");
-        $row = mysqli_fetch_assoc($result);
-        $count = mysqli_num_rows($result);
+        //$result = mysqli_query($con,"SELECT * FROM `user` WHERE `username`='$username' AND `password`='$passwordmd5'");
+        $sql = "SELECT * FROM `user` WHERE `username`=:username AND `password`=:password";
+        $query = $dbh->prepare($sql);
 
-        if ($count==1) {
+        $query->bindParam(':username', $username, PDO::PARAM_STR);
+        $query->bindParam(':password', $password, PDO::PARAM_STR);
+
+        $query->execute();
+        $results = $query->fetch(PDO::FETCH_ASSOC);
+        //$row = 
+
+        //$row = mysqli_fetch_assoc($result);
+        //$count = mysqli_num_rows($result);
+
+        if ($query->rowCount()>0) {
             $_SESSION['user']=array(
-                'username'=>$row['username'],
-                'password'=>$row['password'],
-                'role'=>$row['role']
+                'username'=>$results['username'],
+                'password'=>$results['password'],
+                'role'=>$results['role']
             );
             $role=$_SESSION['user']['role'];
             //Redirecting user based on role
