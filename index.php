@@ -5,20 +5,16 @@ include('config.php');
 if (isset($_POST['login'])) {
     $username = $_POST['username'];
     $password = md5($_POST['password']);
-    
     if (empty($username) && empty($password)) {
         $error= 'Fields are Mandatory';
     } else {
         //Checking login detail
         $sql = "SELECT * FROM `user` WHERE `username`=:username AND `password`=:password";
         $query = $dbh->prepare($sql);
-
         $query->bindParam(':username', $username, PDO::PARAM_STR);
         $query->bindParam(':password', $password, PDO::PARAM_STR);
-
         $query->execute();
         $results = $query->fetch(PDO::FETCH_ASSOC);
-
         if ($query->rowCount()>0) {
             $_SESSION['user']=array(
                 'username'=>$results['username'],
@@ -38,7 +34,6 @@ if (isset($_POST['login'])) {
         } else {
             $error="username or password didn't match";
         }
-        
     }
 }
 ?>
