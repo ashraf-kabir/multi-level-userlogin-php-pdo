@@ -10,5 +10,5 @@ if (ini_get("session.use_cookies")) {
 }
 unset($_SESSION['login']);
 session_destroy();
-header("location: login.php");
+header("location: index.php");
 ?>
