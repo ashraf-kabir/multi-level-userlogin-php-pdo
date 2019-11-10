@@ -6,7 +6,7 @@ if (isset($_POST['login'])) {
     $username = $_POST['username'];
     $password = md5($_POST['password']);
     if (empty($username) && empty($password)) {
-        $error= 'Fields are Mandatory';
+        $error= 'Fields are mandatory';
     } else {
         //Checking login detail
         $sql = "SELECT * FROM `user` WHERE `username`=:username AND `password`=:password";
