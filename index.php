@@ -39,7 +39,7 @@ if (isset($_POST['login'])) {
                 break;
             }
         } else {
-            $error='Your Password or Username is not found';
+            $error="username or password didn't match";
         }
         
     }
