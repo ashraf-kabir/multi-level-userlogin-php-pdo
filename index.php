@@ -31,9 +31,6 @@ if (isset($_POST['login'])) {
                 case 'user':
                 header('location:user.php');
                 break;
-                case 'moderator':
-                header('location:moderator.php');
-                break;
                 case 'admin':
                 header('location:admin.php');
                 break;
