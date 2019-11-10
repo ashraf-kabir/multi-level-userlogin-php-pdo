@@ -2,6 +2,9 @@
 session_start();
 include('config.php');
 //Getting Input value
+if (!empty($_SESSION['user'])) {
+    header("location: user.php");
+} else {
 if (isset($_POST['login'])) {
     $username = $_POST['username'];
     $password = md5($_POST['password']);
@@ -62,3 +65,4 @@ if (isset($_POST['login'])) {
     <?php if(isset($error)){ echo $error; }?>
 </div>
 </html>
+<?php } ?>
