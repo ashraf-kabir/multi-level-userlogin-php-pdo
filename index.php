@@ -50,15 +50,15 @@ if (isset($_POST['login'])) {
 <title>PDO role based login</title>
 </head>
 <div align="center">
-    <h3>Program Data Object role based login</h3>
+    <h3>PHP Program Data Object (PDO) User role based login</h3>
     <form method="POST" action="">
         <table>
             <tr>
-                <td>UserName:</td>
+                <td>Username:</td>
                 <td><input type="text" name="username"/></td>
             </tr>
             <tr>
-                <td>PassWord:</td>
+                <td>Password:</td>
                 <td><input type="password" name="password"/></td>
             </tr>
             <tr>
