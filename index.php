@@ -47,10 +47,10 @@ if (isset($_POST['login'])) {
 ?>
 <html>
 <head>
-<title>PHP MySQL Role Based Access Control</title>
+<title>PDO role based login</title>
 </head>
 <div align="center">
-    <h3>PHP MySQL Role Based Access Control</h3>
+    <h3>Program Data Object role based login</h3>
     <form method="POST" action="">
         <table>
             <tr>
