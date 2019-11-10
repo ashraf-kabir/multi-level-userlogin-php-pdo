@@ -1,7 +1,6 @@
 <?php
 session_start();
 include('config.php');
-//$conn=mysqli_connect('localhost','root','','codenair');
 //Getting Input value
 if (isset($_POST['login'])) {
     $username = $_POST['username'];
@@ -11,7 +10,6 @@ if (isset($_POST['login'])) {
         $error= 'Fields are Mandatory';
     } else {
         //Checking login detail
-        //$result = mysqli_query($con,"SELECT * FROM `user` WHERE `username`='$username' AND `password`='$passwordmd5'");
         $sql = "SELECT * FROM `user` WHERE `username`=:username AND `password`=:password";
         $query = $dbh->prepare($sql);
 
@@ -20,10 +18,6 @@ if (isset($_POST['login'])) {
 
         $query->execute();
         $results = $query->fetch(PDO::FETCH_ASSOC);
-        //$row = 
-
-        //$row = mysqli_fetch_assoc($result);
-        //$count = mysqli_num_rows($result);
 
         if ($query->rowCount()>0) {
             $_SESSION['user']=array(
@@ -45,7 +39,7 @@ if (isset($_POST['login'])) {
                 break;
             }
         } else {
-            $error='Your PassWord or UserName is not Found';
+            $error='Your Password or Username is not found';
         }
         
     }
